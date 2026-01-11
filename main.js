@@ -11,15 +11,24 @@ function generateLottoSet() {
     return Array.from(lottoSet).sort((a, b) => a - b);
 }
 
+function getBallClass(number) {
+    if (number <= 10) return 'ball-1-10';
+    if (number <= 20) return 'ball-11-20';
+    if (number <= 30) return 'ball-21-30';
+    if (number <= 40) return 'ball-31-40';
+    return 'ball-41-45';
+}
+
 function displayNumbers() {
     lottoNumbersContainer.innerHTML = '';
-    // Generate only one set
     const lottoSet = generateLottoSet();
     const setElement = document.createElement('div');
     setElement.classList.add('lotto-set');
+    
     for (const number of lottoSet) {
         const numberElement = document.createElement('div');
         numberElement.classList.add('lotto-number');
+        numberElement.classList.add(getBallClass(number));
         numberElement.textContent = number;
         setElement.appendChild(numberElement);
     }

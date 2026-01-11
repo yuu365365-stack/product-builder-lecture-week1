@@ -2,24 +2,22 @@
     --bg-color: #f0f0f0;
     --container-bg: white;
     --text-color: #333;
-    --number-bg: #e0e0e0;
-    --number-text: #000;
     --button-bg: #4CAF50;
     --button-hover: #45a049;
+    --shadow-color: rgba(0, 0, 0, 0.1);
 }
 
 body.dark-mode {
     --bg-color: #121212;
     --container-bg: #1e1e1e;
     --text-color: #e0e0e0;
-    --number-bg: #333;
-    --number-text: #fff;
+    --shadow-color: rgba(0, 0, 0, 0.5);
 }
 
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
-    font-family: sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,66 +28,115 @@ body {
 
 .container {
     background-color: var(--container-bg);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px var(--shadow-color);
     text-align: center;
-    position: relative; /* For absolute positioning of toggle if needed, or just flow */
-    transition: background-color 0.3s;
+    position: relative;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    max-width: 90%;
+    width: 400px;
 }
 
 h1 {
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     margin-top: 0.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 2rem;
 }
 
 .lotto-numbers-container {
-    display: grid;
-    gap: 1rem;
-    margin-bottom: 2rem;
+    display: flex;
     justify-content: center;
+    margin-bottom: 2.5rem;
+    perspective: 1000px;
 }
 
 .lotto-set {
     display: flex;
-    gap: 0.5rem;
+    gap: 10px;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .lotto-number {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    background-color: var(--number-bg);
-    color: var(--number-text);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: bold;
-    transition: background-color 0.3s, color 0.3s;
+    font-weight: 900;
+    font-size: 1.2rem;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    box-shadow: inset -5px -5px 10px rgba(0,0,0,0.2), 3px 3px 5px rgba(0,0,0,0.2);
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    opacity: 0;
+    transform: scale(0.5);
 }
 
+/* Staggered animation delay */
+.lotto-number:nth-child(1) { animation-delay: 0.1s; }
+.lotto-number:nth-child(2) { animation-delay: 0.2s; }
+.lotto-number:nth-child(3) { animation-delay: 0.3s; }
+.lotto-number:nth-child(4) { animation-delay: 0.4s; }
+.lotto-number:nth-child(5) { animation-delay: 0.5s; }
+.lotto-number:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes popIn {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Color ranges */
+.ball-1-10 { background: radial-gradient(circle at 30% 30%, #fbc400, #cfa000); }
+.ball-11-20 { background: radial-gradient(circle at 30% 30%, #69c8f2, #4da8d2); }
+.ball-21-30 { background: radial-gradient(circle at 30% 30%, #ff7272, #d65050); }
+.ball-31-40 { background: radial-gradient(circle at 30% 30%, #aaaaaa, #888888); }
+.ball-41-45 { background: radial-gradient(circle at 30% 30%, #b0d840, #90b820); }
+
 #generate-btn {
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
     border: none;
-    border-radius: 5px;
-    background-color: var(--button-bg);
+    border-radius: 50px;
+    background: linear-gradient(45deg, #4CAF50, #45a049);
     color: white;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
 }
 
 #generate-btn:hover {
-    background-color: var(--button-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+#generate-btn:active {
+    transform: translateY(1px);
 }
 
 #theme-toggle {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: 1.5rem;
+    right: 1.5rem;
     background: none;
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+#theme-toggle:hover {
+    opacity: 1;
+    transform: rotate(15deg);
 }
