@@ -4,15 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>로또 번호 추천기</title>
+    <title>점심 메뉴 추천</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <button id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
-        <h1>로또 번호 추천기</h1>
-        <div id="lotto-numbers" class="lotto-numbers-container"></div>
-        <button id="generate-btn">새 번호 생성</button>
+        
+        <div class="lang-buttons">
+            <button class="lang-btn active" data-lang="ko">한글</button>
+            <button class="lang-btn" data-lang="en">English</button>
+            <button class="lang-btn" data-lang="zh">中文</button>
+        </div>
+
+        <h1 id="app-title">점심 메뉴 추천</h1>
+        
+        <div id="menu-container" class="menu-display">
+            <div id="menu-image-container">
+                <img id="menu-image" src="" alt="Menu Image" style="display: none;">
+            </div>
+            <h2 id="menu-name"></h2>
+        </div>
+        
+        <button id="recommend-btn">메뉴 추천받기</button>
     </div>
     <script src="main.js"></script>
 </body>
