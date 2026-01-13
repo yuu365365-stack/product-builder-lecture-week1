@@ -215,3 +215,16 @@ h1 {
 .submit-btn:active {
     transform: translateY(1px);
 }
+
+.comments-container {
+    background-color: var(--container-bg);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px var(--shadow-color);
+    text-align: left;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    max-width: 90%;
+    width: 450px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
